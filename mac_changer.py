@@ -9,7 +9,13 @@ def get_arguments():
                       help=' Interface to change its MAC address ')
     parser.add_option('-m', '--mac', dest="mac_address",
                       help=' New MAC address to use')
-    return parser.parse_args()
+    (options, arguments) = parser.parse_args()
+    if not options.interface:
+        parser.error("[-] Please Specify an interface, use --help")
+    if not options.mac_address:
+        parser.error("[-] Please Specify an new MAC address, use --help")
+    
+    return options
     
 
 def change_mac(interface, mac_address):
@@ -27,5 +33,5 @@ def change_mac(interface, mac_address):
 # interface="wlan0"
 # mac_address="00.11.22.33.44.55"
 
-(options, arguments) = get_arguments()
+options = get_arguments()
 change_mac(options.interface, options.mac_address)
