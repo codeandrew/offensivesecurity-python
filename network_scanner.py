@@ -13,7 +13,15 @@ def scan(ip):
 
     print("IP\t\t\tMAC Address")
     print("-"*50)
+    client_list = []
     for e in answered_list:
+        client_dict = {
+            "ip" : e[1].psrc,
+            'mac' : e[1].hwsrc
+        }
+        client_list.append(client_dict)
         print(e[1].psrc + "\t\t" + e[1].hwsrc)
+
+    print(client_list)
 
 scan("10.0.2.1/24")
