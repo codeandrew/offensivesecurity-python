@@ -1,0 +1,45 @@
+###[ ARP ]### 
+  hwtype    = 0x1
+  ptype     = 0x800
+  hwlen     = None
+  plen      = None
+  op        = who-has
+  hwsrc     = 08:00:27:5b:17:61
+  psrc      = 10.0.2.4
+  hwdst     = None
+  pdst      = Net('10.0.2.1/24')
+
+###[ Ethernet ]### 
+  dst       = ff:ff:ff:ff:ff:ff
+  src       = 08:00:27:5b:17:61
+  type      = 0x9000
+
+Ether / ARP who has Net('10.0.2.1/24') says 10.0.2.4
+###[ Ethernet ]### 
+  dst       = ff:ff:ff:ff:ff:ff
+  src       = 08:00:27:5b:17:61
+  type      = 0x806
+###[ ARP ]### 
+     hwtype    = 0x1
+     ptype     = 0x800
+     hwlen     = None
+     plen      = None
+     op        = who-has
+     hwsrc     = 08:00:27:5b:17:61
+     psrc      = 10.0.2.4
+     hwdst     = None
+     pdst      = Net('10.0.2.1/24')
+
+Ether / ARP who has 10.0.2.1 says 10.0.2.4 ==> Ether / ARP is at 52:54:00:12:35:00 says 10.0.2.1 / Padding
+Ether / ARP who has 10.0.2.2 says 10.0.2.4 ==> Ether / ARP is at 52:54:00:12:35:00 says 10.0.2.2 / Padding
+Ether / ARP who has 10.0.2.3 says 10.0.2.4 ==> Ether / ARP is at 08:00:27:34:72:47 says 10.0.2.3 / Padding
+None
+10.0.2.1
+52:54:00:12:35:00
+--------------------------------------------------
+10.0.2.2
+52:54:00:12:35:00
+--------------------------------------------------
+10.0.2.3
+08:00:27:34:72:47
+--------------------------------------------------
