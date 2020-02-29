@@ -14,6 +14,11 @@ ifconfig wlan0 up
 ifconfig wlan0 
 ```
 ## ARP SPOOF 
+* Reminder you need to enable ip forwarding in Linux First
+```
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
 Terminal 1 for Target  
 ```
 arpspoof -i <INTERFACE> -t <TARGET IP> <GATEWAY IP>
