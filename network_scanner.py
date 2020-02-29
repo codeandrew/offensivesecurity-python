@@ -5,10 +5,10 @@ import optparse
 
 def get_arguments():
     parser = optparse.OptionParser()
-    parser.add_option('-r', '--range', dest="range",
-                      help=' Range of IP address ex: 10.0.2.1/24 ')
+    parser.add_option('-t', '--target', dest="target",
+                      help=' Target Range of IP address ex: 10.0.2.1/24 ')
     (options, arguments) = parser.parse_args()
-    if not options.range:
+    if not options.target:
         parser.error("[-] Please Specify an IP range, use --help")
     # For improvement add auto input of IP address range
     return options
@@ -41,5 +41,5 @@ def print_result(result_list):
         print(client["ip"] + "\t\t" + client["mac"])
 
 options = get_arguments()
-scan_result = scan(options.range)
+scan_result = scan(options.target)
 print_result(scan_result)
