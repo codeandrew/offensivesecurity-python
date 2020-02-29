@@ -32,8 +32,6 @@ def scan(ip):
         client_list.append(client_dict)
     return client_list
 
-    print(client_list)
-
 def print_result(result_list):
     print("IP\t\t\tMAC Address")
     print("-"*50)
