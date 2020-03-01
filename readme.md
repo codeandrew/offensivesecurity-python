@@ -1,9 +1,17 @@
 # Offensive Security Python
 > From Zaid Sabih
 
-Topics
+* Topics
 - Changing MAC Address 
+- Network Scanner
 - ARP Spoofing
+- Packet Sniffer
+
+## Playbook
+> Check on how to use these tools 
+
+# Notes
+> On doing this things manually or with another tool
 
 ## Changing MAC ADDRESS
 Commands
@@ -32,7 +40,8 @@ arpspoof -i eth0 -t 10.0.2.1 10.0.2.7
 ```
 
 --- 
-### python3
+
+### Python 3 Compatibility
 
 pip3 install scapy-python3
 
