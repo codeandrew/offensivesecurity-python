@@ -35,3 +35,7 @@ arpspoof -i eth0 -t 10.0.2.1 10.0.2.7
 ### python3
 
 pip3 install scapy-python3
+
+#### Same line Printing 
+print("\r [+] Info counter", end="")
+
