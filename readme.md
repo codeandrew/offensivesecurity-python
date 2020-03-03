@@ -45,8 +45,15 @@ arpspoof -i eth0 -t 10.0.2.1 10.0.2.7
 ```
 
 ## Intercepting Packets
+
+To queue all request to number 0
 ```
 iptables -I FORWARD -j NFQUEUE --queue-num 0
+```
+
+to restore them
+```
+iptables --flush
 ```
 
 --- 
