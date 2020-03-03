@@ -10,6 +10,10 @@
 ## Playbook
 > Check on how to use these tools 
 
+## Dependencies on PIP
+- scapy
+- scapy_http
+
 # Notes
 > On doing this things manually or with another tool
 
