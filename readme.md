@@ -44,6 +44,11 @@ arpspoof -i <INTERFACE> -t <GATEWAY IP> <TARGET IP>
 arpspoof -i eth0 -t 10.0.2.1 10.0.2.7 
 ```
 
+## Intercepting Packets
+```
+iptables -I FORWARD -j NFQUEUE queue-num 0
+```
+
 --- 
 
 ### Python 3 Compatibility
