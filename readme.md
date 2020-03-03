@@ -13,6 +13,7 @@
 ## Dependencies on PIP
 - scapy
 - scapy_http
+- netfilterqueue
 
 # Notes
 > On doing this things manually or with another tool
