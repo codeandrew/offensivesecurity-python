@@ -8,9 +8,12 @@ def sniff(interface):
 
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
+        # print(packet.show())
+        url = "{}{}".format(packet[http.HTTPRequest].Host, packet[http.HTTPRequest].Path)
+        print(url)
+
         if packet.haslayer(scapy.Raw):
             # print(packet)
-            # print(packet.show())
             load = packet[scapy.Raw].load
             keywords = [
                 'username', 'login', 'uname',
@@ -19,7 +22,9 @@ def process_sniffed_packet(packet):
 
             for keyword in keywords:
                 if keyword in load:
+                    print("-"*60)
                     print(load)
+                    print("-"*60)
                     break
 
 
