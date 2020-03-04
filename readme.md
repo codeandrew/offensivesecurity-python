@@ -6,6 +6,7 @@
 - Network Scanner
 - ARP Spoofing
 - Packet Sniffer
+- DNS Spoofer
 
 ## Playbook
 > Check on how to use these tools 
