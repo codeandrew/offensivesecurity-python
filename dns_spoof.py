@@ -5,7 +5,8 @@ import scapy.all as scapy
 
 def proccess_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
-    print(scapy_packet.show())
+    if scapy_packet.haslayer(scapy.DNSRR):
+        print(scapy_packet.show())
     packet.accept()
 
 subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num 0", shell=True)
