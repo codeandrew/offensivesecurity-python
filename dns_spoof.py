@@ -25,8 +25,12 @@ def proccess_packet(packet):
 
     packet.accept()
 
-subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num 0", shell=True)
-subprocess.call("iptables -I INPUT -j NFQUEUE --queue-num 0", shell=True)
+# For local Testing
+# subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num 0", shell=True)
+# subprocess.call("iptables -I INPUT -j NFQUEUE --queue-num 0", shell=True)
+
+# For Forwarding remote network
+subprocess.call("iptables -I FORWARD -j NFQUEUE --queue-num 0", shell=True)
 
 try:
     while True:
