@@ -7,6 +7,20 @@ import sys
 target_ip="10.0.2.15"
 gateway_ip = "10.0.2.1"
 
+def get_arguments():
+    parser = optparse.OptionParser()
+    parser.add_option('-t', '--target', dest="target_ip",
+                      help=' Specify target IP Address ')
+    parser.add_option('-g', '--gateway', dest="gateway_ip",
+                      help=' New MAC address to use')
+    (options, arguments) = parser.parse_args()
+    if not options.target_ip:
+        parser.error("[-] Please Specify target IP, use --help")
+    if not options.gateway_ip:
+        parser.error("[-] Please Specify gateway IP, use --help")
+    # For improvement add auto value in route -n
+    return options
+
 def get_mac(ip):
     arp_request = scapy.ARP(pdst=ip)
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff") # 34. Combining Frames Review
