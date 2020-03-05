@@ -8,7 +8,9 @@ def proccess_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
             print("\nHTTP Request")
-            print(scapy_packet.show())
+            if ".exe" in scapy_packet[scapy.Raw].load:
+                print("[+] exe Request")
+                print(scapy_packet.show())
         elif scapy_packet[scapy.TCP].sport == 80:
             print("\nHTTP Response")
             print(scapy_packet.show())
