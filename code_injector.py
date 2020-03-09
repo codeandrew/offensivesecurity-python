@@ -2,6 +2,9 @@
 import netfilterqueue
 import subprocess
 import scapy.all as scapy
+import re
+
+regex_string = 'Accept-Encoding:.*?\\r\\n'
 
 def set_load(packet, load):
     packet[scapy.Raw].load = load
@@ -15,6 +18,9 @@ def proccess_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
             print("\n[+] HTTP Request")
+            modified_load =re.sub(regex_string, "", scapy_packet[scapy.Raw].load)
+            new_packet = set_load(scapy_packet, modified_load)
+            packet.set_payload(str(new_packet))
             print(scapy_packet.show())
 
         elif scapy_packet[scapy.TCP].sport == 80:
