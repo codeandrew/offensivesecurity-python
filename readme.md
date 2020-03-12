@@ -33,6 +33,19 @@ ifconfig wlan0
 ```
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
+ * exceptions in ubuntu 
+ > as a normal user, you won't be able to write to the file due to insufficient permission.  
+ Use sudo and bash:
+
+```
+ sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
+```
+
+ Use tee:
+
+```
+ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+```
 
 Terminal 1 for Target  
 ```
