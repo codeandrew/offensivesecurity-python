@@ -16,6 +16,7 @@
 - scapy
 - scapy_http
 - netfilterqueue
+- netifaces
 
 # Notes
 > On doing this things manually or with another tool
