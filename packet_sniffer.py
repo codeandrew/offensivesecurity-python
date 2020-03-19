@@ -52,13 +52,3 @@ def get_interfaces():
 interfaces = get_interfaces()
 choice = input("Give me the number: ")
 sniff(interfaces[int(choice)])
-
-"""
-For Improvements:
-
-1. Dynamic interface card input
-- list down all interface
-- Add read input of what to use interface to use
-- selected input will be sniffed
-
-"""
