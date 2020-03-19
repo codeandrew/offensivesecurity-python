@@ -30,7 +30,9 @@ def process_sniffed_packet(packet):
         print("[+] HTTP Request >>> {}".format(url))
         login_info = get_login_info(packet)
         if login_info: 
+            print("\n"*4)
             print("-"*60)
+            print("[+] Possible username/password")
             print(login_info)
             print("-"*60)
 
