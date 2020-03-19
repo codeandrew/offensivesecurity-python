@@ -42,11 +42,10 @@ def get_interfaces():
     return subprocess.check_output("iwconfig | grep ESSID | awk '{ print $1 }'", shell=True)
 
 
+print(get_interfaces())
+# sniff("eth0")
 
-sniff("eth0")
-
-
-```
+"""
 For Improvements:
 
 1. Dynamic interface card input
@@ -54,5 +53,4 @@ For Improvements:
 - Add read input of what to use interface to use
 - selected input will be sniffed
 
-
-```
+"""
