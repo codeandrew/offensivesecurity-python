@@ -3,6 +3,7 @@
 import scapy.all as scapy
 from scapy.layers import http
 import subprocess
+import netifaces
 
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet)
@@ -37,13 +38,19 @@ def process_sniffed_packet(packet):
             print("-"*60)
 
 def get_interfaces():
-    interfaces = subprocess.check_output('ifconfig', shell=True)
-    print(interfaces)
-    return subprocess.check_output("iwconfig | grep ESSID | awk '{ print $1 }'", shell=True)
+    print( subprocess.check_output('ifconfig', shell=True) )
+    i = 0
+    interfaces = netifaces.interfaces()
+    print("Choose the number of the interface to Sniff:")
+    for interface in interfaces:
+        print("{}\t\t{}".format(i, interface))
+        i = i + 1
+
+    return interfaces
 
 
 print(get_interfaces())
-# sniff("eth0")
+sniff("eth0")
 
 """
 For Improvements:
