@@ -36,3 +36,15 @@ def process_sniffed_packet(packet):
 
 
 sniff("eth0")
+
+
+```
+For Improvements:
+
+1. Dynamic interface card input
+- list down all interface
+- Add read input of what to use interface to use
+- selected input will be sniffed
+
+
+```
