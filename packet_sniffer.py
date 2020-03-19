@@ -49,8 +49,9 @@ def get_interfaces():
     return interfaces
 
 
-print(get_interfaces())
-sniff("eth0")
+interfaces = get_interfaces()
+choice = input("Give me the number: ")
+sniff(interfaces[int(choice)])
 
 """
 For Improvements:
