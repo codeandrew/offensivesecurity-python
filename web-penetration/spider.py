@@ -1,16 +1,11 @@
 import requests
 import re
 
-def request(url):
-    try:
-        return requests.get("http://{}".format(url))
-    except requests.exceptions.ConnectionError:
-        pass
-
 target_url = raw_input("Enter Target URL: \n")
 
-response = request(target_url)
+def extract_links_from(url):
+    response = requests.get("http://{}".format(url))
+    return re.findall('(?:href=")(.*?)"', response.content)
 
-href_links = re.findall('(?:href=")(.*?)"', response.content)
-
+href_links = extract_links_from(target_url)
 print(href_links)
