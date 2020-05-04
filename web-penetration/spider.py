@@ -15,5 +15,10 @@ href_links = extract_links_from(target_url)
 
 for link in href_links:
     parsed_link = urlparse.urljoin(target_url, link)
-    target_links.append(target_url)
-    print(parsed_link)
+
+    if "#" in parsed_link:
+        parsed_link = parsed_link.split('#')[0]
+        
+    if parsed_link not in target_links:
+        target_links.append(parsed_link)
+        print(parsed_link)
