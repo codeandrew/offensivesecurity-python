@@ -1,5 +1,5 @@
-
 import requests
+import re
 
 def request(url):
     try:
@@ -11,4 +11,6 @@ target_url = raw_input("Enter Target URL: \n")
 
 response = request(target_url)
 
-print(response.content)
+href_links = re.findall('(?:href=")(.*?)"', response.content)
+
+print(href_links)
