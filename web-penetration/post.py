@@ -10,8 +10,8 @@ data_dict = {
     "Login" : "submit"
 }
 
-response = requests.post(target_url, data_dict)
-print(response.content)
+#response = requests.post(target_url, data_dict)
+#print(response.content)
 
 password_list=""
 with open(password_list, 'r') as wordlist_file:
