@@ -21,7 +21,12 @@ def crawl(url):
 
 
 url = raw_input("Enter Target URL: \n")
-target_url = "https://{}".format(url)
+protocol = raw_input("Is it using https? (y/n)")
+
+if protocol is 'y' : protocol = 'https://'
+if protocol is 'n' : protocol = 'http://'
+
+target_url = "{}{}".format(protocol, url)
 target_links = []
 
 crawl(target_url)
