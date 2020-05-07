@@ -19,3 +19,11 @@ form_list = parsed_html.findAll("form")
 for form in form_list:
     action = form.get('action')
     print(action)
+    method = form.get('method')
+    print(method)
+
+    input_list = form.findAll('input')
+    print("\nInput names:")
+    for input in input_list:
+        input_name = input.get('name')
+        print(input_name)
