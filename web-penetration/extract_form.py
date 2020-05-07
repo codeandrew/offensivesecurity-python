@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 import requests
-from BeautifulSoup import BeautifulSoup
+#from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 def request(url):
     try:
@@ -12,6 +13,9 @@ def request(url):
 target_url="10.0.2.15/mutillidae/index.php?page=dns-lookup.php"
 response = request(target_url)
 
-parsed_html = BeautifulSoup(response.content)
+parsed_html = BeautifulSoup(response.content, features='lxml')
 form_list = parsed_html.findAll("form")
-print(form_list)
+
+for form in form_list:
+    action = form.get('action')
+    print(action)
