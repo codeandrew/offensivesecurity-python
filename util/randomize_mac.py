@@ -6,14 +6,16 @@ characters = string.ascii_lowercase + string.digits
 def randomize(char):
     return random.choice(list(char))
 
-mac_raw = []
+def get_mac_address(characters, mac_raw=[]):
+    for i in range(6):
+        if len(mac_raw) is not 0:
+            mac_raw.append(":")
+        for ii in range(2):
+            mac_raw.append(randomize(characters))
 
-for i in range(6):
-    if len(mac_raw) is not 0:
-        mac_raw.append(":")
-    for ii in range(2):
-        mac_raw.append(randomize(characters))
+    return "".join(mac_raw)
 
-mac_address = "".join(mac_raw)
+if __name__ == '__main__':
+    mac_address = get_mac_address(characters)
+    print(mac_address)
 
-print(mac_address)
