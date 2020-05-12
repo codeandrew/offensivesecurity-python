@@ -3,6 +3,7 @@
 import subprocess
 import optparse
 import re
+from util.randomize_mac import get_mac_address
 
 def get_arguments():
     parser = optparse.OptionParser()
@@ -14,8 +15,11 @@ def get_arguments():
     if not options.interface:
         parser.error("[-] Please Specify an interface, use --help")
     if not options.mac_address:
-        parser.error("[-] Please Specify an new MAC address, use --help")
+        #parser.error("[-] Please Specify an new MAC address, use --help")
+        options.mac_address = get_mac_address()
+
     # For improvement add auto mac address 00:11:22:33:44:55
+    print(options)
     return options
     
 def change_mac(interface, mac_address):
