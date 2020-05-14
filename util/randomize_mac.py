@@ -1,7 +1,7 @@
 import string
 import random
 
-characters = string.ascii_lowercase + string.digits
+characters = 'abcdef' + string.digits
 
 def randomize(char):
     return random.choice(list(char))
