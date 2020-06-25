@@ -14,6 +14,7 @@ def get_arguments():
     (options, arguments) = parser.parse_args()
     if not options.interface:
         parser.error("[-] Please Specify an interface, use --help")
+        print("MAC Address is auto Generated, just add -m if you want to specify")
     if not options.mac_address:
         #parser.error("[-] Please Specify an new MAC address, use --help")
         options.mac_address = get_mac_address()
