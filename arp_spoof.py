@@ -14,7 +14,7 @@ def get_arguments():
     parser.add_option('-t', '--target', dest="target_ip",
                       help=' Specify target IP Address ')
     parser.add_option('-g', '--gateway', dest="gateway_ip",
-                      help=' New MAC address to use')
+                      help=' Specify gateway IP, Try route -n')
     (options, arguments) = parser.parse_args()
     if not options.target_ip:
         parser.error("[-] Please Specify target IP, use --help")
