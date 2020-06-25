@@ -23,10 +23,21 @@
 MAC Address is auto generated randomly. Just Specify the the interface. 
 
 ```bash
-python mac_changer.py -i <INTERFACE>
+python mac_changer.py -i <INTERFACE> # template
+python mac_changer.py -i wlan0 # usage
 ```
 > You can Manually add the mac address by doin -m   
 > -h for more info
+
+## Network Scanner
+> My own version of nmap 
+
+
+```bash
+python network_scanner.py -t <IP SUBNET> # Template
+python network_scanner.py -t 192.168.1.1/24 # Usage
+
+```
 
 
 ### Python 3 Compatibility
