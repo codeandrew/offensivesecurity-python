@@ -9,6 +9,9 @@
 - DNS Spoofer
 - Replace Download
 
+## Target 
+docker run --rm -it -p 80:80 vulnerables/web-dvwa:latest
+
 ## Playbook
 > Check on how to use these tools 
 
