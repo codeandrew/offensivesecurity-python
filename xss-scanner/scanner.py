@@ -79,9 +79,17 @@ class Scanner:
 
             for form in forms:
                 print(f"[+] Testing form in: {link}")
+                is_vulnerable_to_xss = self.test_xss_in_form(form=form, url=link)
+                if is_vulnerable_to_xss:
+                    print(f"\n[***] XSS Discovered in: {link}")
+                    print(form)
+                    print("===================================\n")
 
             if "=" in link:
-                print(f"[+] Testing: {link}")
+                print(f"[+] Testing Link: {link}")
+                is_vulnerable_to_xss = self.test_xss_in_link(link)
+                if is_vulnerable_to_xss:
+                    print(f"\n[***] XSS Discovered in: {link}")
 
     def test_xss_in_link(self, url):
         xss_payload = "<sCript>alert('XSS PAYLOAD')</scriPt>"
@@ -114,11 +122,10 @@ def dvwa_scan():
         "user_token": token
     }
     vuln_scanner.session.post(login, data=dvwa_login)
-    # vuln_scanner.crawl()
 
-    test_url = "http://localhost/vulnerabilities/xss_r/"
-    forms = vuln_scanner.extract_forms(test_url)
-    print(forms) # LIST of forms
+    # test_url = "http://localhost/vulnerabilities/xss_r/" 
+    # forms = vuln_scanner.extract_forms(test_url)
+    # print(forms) # LIST of forms
 
     # response = vuln_scanner.submit_form(form=forms[0], value='testtest',url=test_url)
     # print(response.text)
@@ -128,8 +135,12 @@ def dvwa_scan():
     # print(response)
 
     # EXPLOIT XSS in LINK
-    response = vuln_scanner.test_xss_in_link(f"{test_url}?name=test")
-    print(response)
+    # response = vuln_scanner.test_xss_in_link(f"{test_url}?name=test")
+    # print(response)
+
+    # Automated Discovery
+    vuln_scanner.crawl()
+    vuln_scanner.run_scanner()
 
 
 
