@@ -41,9 +41,8 @@ class Scanner:
         token = soup.find('input', {'name': 'user_token'})['value']
         return token
 
-
-
 def dvwa_scan():
+    # EXAMPLE ATTACK IF THERE's AUTHENTICATION 
     # DVWA TARGET 
     # docker run --rm -it -p 80:80 vulnerables/web-dvwa
     target_url = "http://localhost" # DVWA
