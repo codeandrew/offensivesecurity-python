@@ -87,14 +87,12 @@ class Scanner:
         xss_payload = "<sCript>alert('XSS PAYLOAD')</scriPt>"
         url = url.replace("=", f"={xss_payload}")
         response = self.session.get(url=url)
-        if xss_payload in response.text:
-            return True
+        return xss_payload in response.text
 
     def test_xss_in_form(self,form, url):
         xss_payload = "<sCript>alert('XSS PAYLOAD')</scriPt>"
         response = self.submit_form(form=form, value=xss_payload, url=url)
-        if xss_payload in response.text:
-            return True
+        return xss_payload in response.text
     
 
 def dvwa_scan():
@@ -120,7 +118,7 @@ def dvwa_scan():
 
     test_url = "http://localhost/vulnerabilities/xss_r/"
     forms = vuln_scanner.extract_forms(test_url)
-    # print(forms)
+    print(forms) # LIST of forms
 
     # response = vuln_scanner.submit_form(form=forms[0], value='testtest',url=test_url)
     # print(response.text)
