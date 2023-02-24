@@ -51,14 +51,6 @@ class Scanner:
         method = form.get("method")
         post_url = urlparse.urljoin(url, action)
 
-        # print(
-        #     f"URL: {post_url} : \n",
-        #     "[+] Forms: \n"
-        #     f"action: {action}",
-        #     f"method: {method}"
-        # )
-        # payload = "XSS TEST"
-        
         input_list = form.findAll("input")
         post_data = {}
         for input in input_list:
@@ -101,7 +93,6 @@ class Scanner:
         xss_payload = "<sCript>alert('XSS PAYLOAD')</scriPt>"
         response = self.submit_form(form=form, value=xss_payload, url=url)
         return xss_payload in response.text
-    
 
 def dvwa_scan():
     # EXAMPLE ATTACK IF THERE's AUTHENTICATION 
@@ -123,26 +114,9 @@ def dvwa_scan():
     }
     vuln_scanner.session.post(login, data=dvwa_login)
 
-    # test_url = "http://localhost/vulnerabilities/xss_r/" 
-    # forms = vuln_scanner.extract_forms(test_url)
-    # print(forms) # LIST of forms
-
-    # response = vuln_scanner.submit_form(form=forms[0], value='testtest',url=test_url)
-    # print(response.text)
-
-    # EXPLOIT XSS in FORMS
-    # response = vuln_scanner.test_xss_in_form(form=forms[0], url=test_url)
-    # print(response)
-
-    # EXPLOIT XSS in LINK
-    # response = vuln_scanner.test_xss_in_link(f"{test_url}?name=test")
-    # print(response)
-
     # Automated Discovery
     vuln_scanner.crawl()
     vuln_scanner.run_scanner()
-
-
 
 if __name__ == "__main__":
     dvwa_scan()
