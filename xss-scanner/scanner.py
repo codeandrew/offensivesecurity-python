@@ -41,6 +41,39 @@ class Scanner:
         token = soup.find('input', {'name': 'user_token'})['value']
         return token
 
+    def extract_forms(self, url):
+        response = self.session.get(url)
+        parsed_html = BeautifulSoup(response.content, features="html.parser")
+        return parsed_html.findAll("form")
+
+    def submit_form(self, form, value, url):
+        action = form.get("action")
+        method = form.get("method")
+        post_url = urlparse.urljoin(url, action)
+
+        print(
+            f"URL: {post_url} : \n",
+            "[+] Forms: \n"
+            f"action: {action}",
+            f"method: {method}"
+        )
+        # payload = "XSS TEST"
+        
+        input_list = form.findAll("input")
+        post_data = {}
+        for input in input_list:
+            input_name = input.get('name')
+            input_type = input.get('type')
+            input_value = input.get('value')
+            if input_type == 'text':
+                input_value = value
+            
+            post_data[input_name] = input_value
+        if method == 'post':
+            return self.session.post(post_url,data=post_data)
+        return self.session.get(post_url, params=post_data)
+
+
 def dvwa_scan():
     # EXAMPLE ATTACK IF THERE's AUTHENTICATION 
     # DVWA TARGET 
@@ -52,7 +85,7 @@ def dvwa_scan():
 
     vuln_scanner = Scanner(url=target_url,ignore_links=links_to_ignore)
     login = f"{target_url}/login.php"
-    token = vuln_scanner.extract_csrf_token(vuln_scanner.session,url=login)
+    token = vuln_scanner.extract_csrf_token(vuln_scanner.session, url=login)
     dvwa_login = {
         "username": 'admin',
         "password": 'password',
@@ -60,7 +93,14 @@ def dvwa_scan():
         "user_token": token
     }
     vuln_scanner.session.post(login, data=dvwa_login)
-    vuln_scanner.crawl()
+    # vuln_scanner.crawl()
+
+    test_url = "http://localhost/vulnerabilities/xss_r/"
+    forms = vuln_scanner.extract_forms(test_url)
+    print(forms)
+    response = vuln_scanner.submit_form(form=forms[0], value='testtest',url=test_url)
+    print(response.text)
+
 
 
 if __name__ == "__main__":
