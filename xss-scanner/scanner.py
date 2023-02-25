@@ -11,10 +11,6 @@ class Scanner:
         self.ignore_links = ignore_links
 
     def extract_links_from(self, url):
-        # headers = {
-        #     "Cookie": "PHPSESSID=oi7673bicmjlmcnthnrhvlmpt5; security=low; phpMyAdmin=6ff94ac6d748239b9c4f2a73c74f87ba; pma_lang=en; 5d89dac18813e15aa2f75788275e3588=bu0fc0d7ijh15nhknldosad50p"
-        # }
-        # response = requests.session(url, headers=headers)
         response = self.session.get(url)
         return re.findall('(?:href=")(.*?)"', response.text)
 
@@ -95,10 +91,10 @@ class Scanner:
         return xss_payload in response.text
 
 def dvwa_scan():
-    # EXAMPLE ATTACK IF THERE's AUTHENTICATION 
-    # DVWA TARGET 
+    # example attack if there's authentication 
+    # dvwa target 
     # docker run --rm -it -p 80:80 vulnerables/web-dvwa
-    target_url = "http://localhost" # DVWA
+    target_url = "http://localhost" # dvwa
     links_to_ignore = [
         'http://localhost/logout.php'
     ]
@@ -114,9 +110,22 @@ def dvwa_scan():
     }
     vuln_scanner.session.post(login, data=dvwa_login)
 
-    # Automated Discovery
+    # automated discovery
+    vuln_scanner.crawl()
+    vuln_scanner.run_scanner()
+
+def example_scan():
+    # example attack 
+    # if no authentication 
+    target_url =  "https://example.example/"
+    links_to_ignore = [
+        'http://localhost/logout.php'
+    ]
+    vuln_scanner = Scanner(url=target_url,ignore_links=links_to_ignore)
+    # automated discovery
     vuln_scanner.crawl()
     vuln_scanner.run_scanner()
 
 if __name__ == "__main__":
-    dvwa_scan()
+    #dvwa_scan()
+    example_scan()
