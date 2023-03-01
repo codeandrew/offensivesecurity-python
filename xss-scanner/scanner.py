@@ -2,13 +2,41 @@ import requests
 import re
 import urllib.parse as urlparse
 from bs4 import BeautifulSoup
+import random
+
+USER_AGENTS = [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15; rv:70.0) Gecko/20100101 Firefox/70.0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0",
+]
 
 class Scanner:
     def __init__(self, url, ignore_links) -> None:
         self.session = requests.Session()
+        self.set_user_agent()
         self.target_url = url 
         self.target_links = []
         self.ignore_links = ignore_links
+        self.reports = {
+            'target': "",
+            'directory' :{
+                'crawl' : [],
+                'traversal' :[]
+            },
+            'xss': [
+                {
+                    'url': "",
+                    'form': "",
+                    'payload' : ""
+                }
+            ]
+        }
+    
+    def set_user_agent(self):
+        self.session.headers.update({
+            "User-Agent": random.choice(USER_AGENTS)
+        })
 
     def extract_links_from(self, url):
         response = self.session.get(url)
@@ -127,5 +155,5 @@ def example_scan():
     vuln_scanner.run_scanner()
 
 if __name__ == "__main__":
-    #dvwa_scan()
-    example_scan()
+    dvwa_scan()
+    #example_scan()
