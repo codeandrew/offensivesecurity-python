@@ -1,5 +1,5 @@
 # Offensive Security Python
-> From Zaid Sabih
+> Creating Offensive security tools using python
 
 **Topics**
 - Changing MAC Address 
@@ -8,9 +8,23 @@
 - Packet Sniffer
 - DNS Spoofer
 - Replace Download
+- XSS Scanner 
+- Network Scanner
+- Utilities
+  - Fake Profile Generator
+  - Randomize MAC Address
+  - Combine Wordlist
 
-## Target 
+## Targets
+
+1. DVWA
+```
 docker run --rm -it -p 80:80 vulnerables/web-dvwa:latest
+```
+2. metasploitable2
+```
+docker run --name container-name -it tleemcjr/metasploitable2:latest sh -c "/bin/services.sh && bash"
+```
 
 ## Playbook
 > Check on how to use these tools 
@@ -61,4 +75,3 @@ pip3 install scapy-python3
 
 #### Same line Printing 
 print("\r [+] Info counter", end="")
-
