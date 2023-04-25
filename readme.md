@@ -1,5 +1,6 @@
 # Offensive Security Python
-> Offensive Security Python. Collection of python scripts that I created/pirated/curated to help me understand CyberSecurity. I find it helpful to write the tools you use to help you really understand what it does and what's the purpose of it.  
+> Offensive Security Python. Collection of python scripts that I created/pirated/curated to help me understand CyberSecurity. I find it helpful to write the tools you use to help you really understand what it does and what's the purpose of it.    
+> "When you try to understand everything, you stumble on a few things along the way"
 
 **Topics**
 - Changing MAC Address 
