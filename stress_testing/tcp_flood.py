@@ -17,3 +17,12 @@ if __name__ == "__main__":
     target_ip = sys.argv[1]
     target_port = sys.argv[2]
     main(target_ip=target_ip, target_port=target_port)
+
+
+
+"""
+most common port to test are
+53
+80
+443
+"""
