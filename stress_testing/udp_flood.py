@@ -19,3 +19,10 @@ def send_packet():
 # Send the UDP packets in a loop
 while True:
     send_packet()
+    
+"""
+most common port to test are
+53
+80
+443
+"""
