@@ -76,3 +76,17 @@ pip3 install scapy-python3
 
 #### Same line Printing 
 print("\r [+] Info counter", end="")
+
+
+## Network Interfaces
+
+| Network Interface | Description                                                    |
+|-------------------|----------------------------------------------------------------|
+| eth0              | Default network interface on Linux systems                     |
+| wlan0             | Wireless network interface on Linux systems                    |
+| en0               | Default network interface on macOS systems                     |
+| en1               | Wireless network interface on macOS systems                    |
+| Ethernet          | Default network interface on Windows systems (older versions)  |
+| Wi-Fi             | Wireless network interface on Windows systems (older versions) |
+| Ethernet0         | Default network interface on Windows systems (newer versions)  |
+| Wi-Fi0            | Wireless network interface on Windows systems (newer versions) |
