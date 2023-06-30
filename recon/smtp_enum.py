@@ -12,13 +12,14 @@ username_list =
 
 # USAGE
 
-╰─$ python3 smtp_enum.py                                                                         
-Banner:
- 220 polosmtp.home ESMTP Postfix (Ubuntu)
+╰─$ python3 smtp_enum-3.py
+[+] target_ip = 10.10.129.130
+[+] wordlist = username_list
+[+] Banner:  220 polosmtp.home ESMTP Postfix (Ubuntu)
 
-User found: root
-User found: administrator
-User found: vagrant
+[+] User found: root
+[+] User found: administrator
+[+] User found: vagrant
 
 """
 
@@ -57,23 +58,26 @@ class SmtpScanner:
                 try:
                     code, msg = self.smtp.docmd("vrfy", username)
                     if code == 250 or code == 252:
-                        print(f"User found: {username}")
+                        print(f"[+] User found: {username}")
                         users.append(username)
                 except Exception as e:
-                    print(f"Error verifying user {username}: {e}")
+                    print(f"[+] Error verifying user {username}: {e}")
         return users
     
 
 def main():
-    rhosts = '10.10.123.75'
+    rhosts =  '10.10.129.130'
     username_list = '/usr/share/wordlists/SecLists/Usernames/top-usernames-shortlist.txt'
-
+    print(
+        f"[+] target_ip = {rhosts}",
+        f"\n[+] wordlist = username_list"
+    )
     enumerator = SmtpScanner(rhosts)  
     if enumerator.connect():
-        print("Banner:\n", enumerator.get_banner())
+        print("[+] Banner: ", enumerator.get_banner())
         enumerator.enumerate_users(username_list)  
     else:
-        print("Could not connect to the SMTP server.")
+        print("[-] Could not connect to the SMTP server.")
 
 if __name__ == "__main__":
     main()
