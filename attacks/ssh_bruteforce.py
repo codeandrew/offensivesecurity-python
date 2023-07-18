@@ -9,10 +9,10 @@ def ssh_attempt(user, host, password):
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         client.connect(host, username=user, password=password)
 
-        print(f"[+] Successful login to {host} with user {user} and password {password}")
+        print(f"[+] Successful login to {host}  \nuser: {user}  \npassword: {password}")
+        exit(0)
     except paramiko.AuthenticationException:
-        # Incorrect password
-        print(f"[-] Authentication failed for user {user} and password {password}")
+        print(f"[-] Authentication failed {user} : {password}")
     except paramiko.SSHException as e:
         print(f"SSH error occurred: {str(e)}")
     finally:
