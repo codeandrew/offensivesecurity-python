@@ -3,11 +3,16 @@ import asyncio
 import time
 import json
 
+"""
+pip3 install aiohttp
+
+"""
+
 url = "https://api.target.io/api/register"
 number_of_requests = 500
 concurrent_limit = 500  # adjust based on your system's capability
 
-async def f(session, i):
+async def post(session, i):
     payload = {
         "email": f"demo_atk+{i}@email.com",
         "password": "s3cur3_th1s_sh1t"
@@ -34,7 +39,7 @@ async def main():
     tasks = []
     async with aiohttp.ClientSession() as session:
         for i in range(number_of_requests):
-            task = asyncio.ensure_future(f(session, i))
+            task = asyncio.ensure_future(post(session, i))
             tasks.append(task)
         responses = await asyncio.gather(*tasks)
         return responses
