@@ -4,8 +4,9 @@ import time
 import json
 
 """
+v1.0.1
+testedin python 3.10.6
 pip3 install aiohttp
-
 """
 
 url = "https://api.target.io/api/register"
