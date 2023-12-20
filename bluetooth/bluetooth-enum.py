@@ -1,6 +1,7 @@
 import bluetooth
 
 """
+# ====================================
 # PRE-REQUISITES
 sudo apt install -y \
     libbluetooth-dev \
@@ -15,7 +16,19 @@ tar -xzvf master.tar.gz
 cd pybluez-master
 # This requires sudo because of  hardware interaction
 sudo python3 setup.py install
+
+# ====================================
+# USAGE
+╰─$ python3 bluetooth-enum.py
+Scanning for Bluetooth devices...
+Found 2 devices.
+    Address: 30:03:C8:2F:8E:E2, Name: SONY KD-75X80K
+    Address: 04:7A:0B:0B:84:CD, Name: Mi Soundbar
+    [('30:03:C8:2F:8E:E2', 'SONY KD-75X80K'), ('04:7A:0B:0B:84:CD', 'Mi Soundbar')]
+Connecting to AV Remote Control Target on 30:03:C8:2F:8E:E2...
+Could not connect: [Errno 111] Connection refused
 """
+
 
 class BluetoothEnumerator:
     def __init__(self):
