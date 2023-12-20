@@ -18,7 +18,8 @@ cd pybluez-master
 sudo python3 setup.py install
 
 # ====================================
-# USAGE
+# USAGE 
+# > version python3.10
 ╰─$ python3 bluetooth-enum.py
 Scanning for Bluetooth devices...
 Found 2 devices.
