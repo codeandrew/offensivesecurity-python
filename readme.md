@@ -1,7 +1,8 @@
 # Offensive Security Python
 > Offensive Security Python. Collection of python scripts that I created/pirated/curated to help me understand CyberSecurity. I find it helpful to write the tools you use to help you really understand what it does and what's the purpose of it.    
-> "When you try to understand everything, you stumble on a few things along the way"
-
+> "When you try to understand everything, you stumble on a few things along the way"  
+> "Code is the best place to capture current understanding of a model"  
+ 
 **Topics**
 - Changing MAC Address 
 - Network Scanner
