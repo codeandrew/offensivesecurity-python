@@ -1,0 +1,13 @@
+curl 'http://10.10.152.224/Account/login.aspx?ReturnURL=%2fadmin%2f' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8' \
+  -H 'Accept-Language: en-US,en' \
+  -H 'Cache-Control: max-age=0' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'Origin: http://10.10.152.224' \
+  -H 'Referer: http://10.10.152.224/Account/login.aspx?ReturnURL=/admin/' \
+  -H 'Sec-GPC: 1' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36' \
+  --data-raw '__VIEWSTATE=NUKk2oXsa%2FAuNbCXaJFdRSC0Q4nWXYdnE0G9A3ZsXiHi2e4yR0Du7dtIeVcNELtIRoYnO4Xlvaqle3rxSA33tKDsUPlxmjNaOYfTZlWQrPm8GxcsUsYvD2SDbsquBGIreySBhXsQLkNaZROcw1Oop119pSJHXB25WhOS0gykVMFsIia0&__EVENTVALIDATION=lw53QeEKio%2BlKPnqSaKNt8u%2FJZgkr8l6dz8%2F%2FxvVW7%2BWQ3m79K%2Btude%2FhapZbccBOe5%2F0pdneh7rP3e9IvtPO60SquITbVwfPo72jxJkrSJnEqIeOqNKljqQ3QGEyFMsmp0Udb3SYUv7ckQRprh2VqfAUQnV1zhjl%2FmgTzEDl9ccpxWh&ctl00%24MainContent%24LoginUser%24UserName=admin&ctl00%24MainContent%24LoginUser%24Password=FUZZ&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in' \
+  --insecure
