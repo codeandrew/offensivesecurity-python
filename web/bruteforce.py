@@ -7,7 +7,7 @@ import os
 import re
 
 """
-v1.0.2
+v1.1.0
 tested in python 3.10.6
 pip3 install aiohttp
 """
